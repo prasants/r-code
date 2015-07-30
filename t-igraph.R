@@ -6,7 +6,7 @@ library(igraph)
 g <- read.csv("~/Google Drive/02. Academic/01. NYU/Module 2/02. Network Analytics/01. Pre Module/Twiiter Assignment/data/graph_subset.txt", quote="\"")
 str(g)
 
-g1<- read.graph( file ="~/Google Drive/02. Academic/01. NYU/Module 2/02. Network Analytics/01. Pre Module/Twiiter Assignment/data/graph_subset.txt" , directed=TRUE)
+g1<- read.graph( file ="~/Google Drive/02. Academic/01. NYU/Module 2/02. Network Analytics/01. Pre Module/Twiiter Assignment/data/graph_subset.txt" , format = "ncol", directed=TRUE)
 summary(g1)
 
 #Edge Width
