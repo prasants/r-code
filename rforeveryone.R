@@ -293,3 +293,41 @@ theArray <- array(1:12, dim=c(2,3,2)) #Dimensions - 2 rows, 3 columns, 2 "tables
 theArray
 
 theArray[1,,]
+
+#Reading CSVs####
+theURL <- "http://www.jaredlander.com/data/Tomato%20First.csv"
+tomato <- read.table(file = theURL, header = TRUE, sep = ",")
+head(tomato)
+
+#stringsAsFactors
+x <- 10:1
+y <- -4:5
+q <- c("Hockey", "Football", "Baseball", "Curling", "Rugby", "Lacrosse", "Basketball", "Tennis", "Cricket", "Soccer")
+theDF <- data.frame(First=x, Second=y, Sport=q, stringsAsFactors=FALSE)
+theDF$Sport
+theDF
+
+#Reading From Databases####
+require (RODBC)
+
+
+#Data Included with R####
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+
+#Simple HTML Tables####
+library(XML)
+theURL <- "http://www.jaredlander.com/2012/02/another-kind-of-super-bowl-pool/"
+bowlPool <- readHTMLTable(theURL, which = 1, header = FALSE, stringsAsFactors = FALSE)
+bowlPool
+
+#Statistical Graphics####
+#Base Graphics
+library(ggplot2)
+data(diamonds)
+head(diamonds)
+str(diamonds)
+
+hist(diamonds$carat, main = "Carat Histogram", xlab = "Carat")
+#Base Scatterplot
