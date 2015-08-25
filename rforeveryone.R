@@ -331,3 +331,14 @@ str(diamonds)
 
 hist(diamonds$carat, main = "Carat Histogram", xlab = "Carat")
 #Base Scatterplot
+plot(price~carat, data = diamonds) #This way of plotting is called the formula notation
+plot(diamonds$carat, diamonds$price) #This is the way to plot without the formula interface
+#Boxplots
+boxplot(diamonds$carat)
+
+#ggplot2####
+#Histograms and Densities
+#Histograms are discrete measurements, density plots are more of a continuous measurement
+ggplot(data = diamonds)+geom_histogram(aes(x=carat))
+ggplot(data = diamonds)+geom_density(aes(x=carat))
+ggplot(data = diamonds)+geom_density(aes(x=carat), fill = "grey50")
