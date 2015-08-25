@@ -342,3 +342,9 @@ boxplot(diamonds$carat)
 ggplot(data = diamonds)+geom_histogram(aes(x=carat))
 ggplot(data = diamonds)+geom_density(aes(x=carat))
 ggplot(data = diamonds)+geom_density(aes(x=carat), fill = "grey50")
+#Scatterplots
+ggplot(diamonds, aes(x=carat, y=price))+geom_point()
+g <- ggplot(diamonds, aes(x=carat, y=price))
+# From here on , layers can be added to the variable named "g"
+#For example, 
+g+geom_point(aes(color=color))
