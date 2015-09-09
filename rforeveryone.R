@@ -348,3 +348,32 @@ g <- ggplot(diamonds, aes(x=carat, y=price))
 # From here on , layers can be added to the variable named "g"
 #For example, 
 g+geom_point(aes(color=color))
+#Faceted Plots
+g+geom_point(aes(color=color)) + facet_wrap(~color) #Scatterplot faceted by color
+g+geom_point(aes(color=color)) + facet_grid(cut ~ clarity) #Scatterplot faceted by cut and clarity. Cut aligned vertically and clarity aligned horizontally
+
+#Faceting of Histograms
+ggplot(diamonds, aes(x=carat))+geom_histogram() + facet_wrap(~color)
+#Boxplots using ggplot2
+ggplot(diamonds, aes(y=carat, x=1)) + geom_boxplot()
+#Multiple Boxplots
+ggplot(diamonds, aes(y=carat, x=cut)) + geom_boxplot()
+#Violin plots
+ggplot(diamonds, aes(y=carat, x=cut))+geom_violin()
+#Using multiple layers for plots
+ggplot(diamonds, aes(y=carat, x=cut))+geom_point()+geom_violin()
+ggplot(diamonds, aes(y=carat, x=cut))+geom_violin()+geom_point() #Order of the layers matters
+
+#ggplot line graphs
+ggplot(economics, aes(x=date, y=pop))+geom_line()
+library(lubridate)
+#Create year and month variable
+economics$year <- year(economics$date)
+economics$month <- month(economics$date, label=TRUE)
+econ2000 <- economics[which(economics$year >= 2000),]
+library(scales)
+#Build the foundation for the plot
+g <- ggplot(econ2000, aes(x=month, y=pop))
+#add lines color coded and grouped by year
+#The group aesthetic breaks the data into separate groups
+g <- g + geom_line(aes(color=factor(year),group=year))
