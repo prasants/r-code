@@ -209,3 +209,21 @@ m #Matrix, filled by column
 m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2,
             5, byrow=T)
 m #Matrix, by row
+
+m[2,3] #2nd row, 3rd column
+
+m[-2,1] 
+m[1,] #Obtain the entire first row
+m[,4] #Obtain the entire fourth column
+m[,90] #Will give an 'Out of Bounds' error if you specify column that doesn't exist 
+
+#Using the cbind/rbind function to join two or more matrices by columns or rows respectively
+m1 <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5)
+m1
+cbind(c(4,76), m1[,4])
+
+m2 <- matrix(rep(10,20), 4,5) #Repeat the number '10', twenty times, arrange into a 4X5 matrix
+m2
+
+m3 <- rbind(m[1,],m2[3,]) #combine the 1st row of m1, and 3rd row of m2
+m3
