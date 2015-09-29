@@ -189,3 +189,23 @@ pH
 ph <- c(area1=4.5, area2=7, mud=7.3, dam=8.2, middle=6.3)
 ph
 ph["mud"] #Indexing of the name
+ph[c("area1", "mud", "middle")]
+
+#Empty Index
+#Represents absense of a restriction on the selection process
+ph[] <- 0 #Assigns 0 as the value for all vectors in "ph"
+ph[]
+
+#Matrices and Arrays
+#Matrices are a special case of arrays with two single dimensions
+m <- c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23)
+m
+dim(m) <- c(2,5) #Specifying the dimensions of the matrix - 2 rows, 5 columns
+m
+#Alternate way to create the same matrix
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23),2,5)
+m #Matrix, filled by column
+
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2,
+            5, byrow=T)
+m #Matrix, by row
