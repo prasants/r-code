@@ -227,3 +227,41 @@ m2
 
 m3 <- rbind(m[1,],m2[3,]) #combine the 1st row of m1, and 3rd row of m2
 m3
+
+#Column and Row Name
+results <- matrix(c(10,30,40,50,43,56,21,30),2,4,
+                   byrow=T)
+colnames(results) <- c("1qrt", "2qrt", "3qrt", "4qrt")
+rownames(results) <- c("store1", "store2")
+results
+results["store1",]
+
+results["store2", c("1qrt", "4qrt")]
+
+#Arrays
+#Arrays are extesnions of matrices to more than 2 dimensions
+#Initiated by using the array() function
+a <- array(1:24, dim = c(4, 3, 2))
+a
+a[1,3,2] #First row, third column, 2nd matrix
+a[1,,2] #First row, 2nd matrix
+a[4,3,] #Selects the elements at 4th row, 3rd column from both matrices 
+a[c(2,3),,-2]
+
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23),2,5)
+m
+m <- matrix(c(45, 23, 66, 77, 33, 44, 56, 12, 78, 23), 2, 5, byrow=T) #Same as the previous matrix, but arranged by row
+m
+m*3
+
+m1 <- matrix(c(45, 23, 66, 77, 33, 44), 2,3)
+m1
+m2 <- matrix(c(12,65,32,7,4,78),2,3)
+m2
+m1+m2
+
+#Lists
+#List components need not be of the same type, mode or length
+my.list <- list(stud.id=34453,stud.name="John",
+                stud.marks=c(14.3,12,15,19))
+my.list
