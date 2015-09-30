@@ -265,3 +265,74 @@ m1+m2
 my.list <- list(stud.id=34453,stud.name="John",
                 stud.marks=c(14.3,12,15,19))
 my.list
+my.list[1]
+my.list[[1]] #Compare the difference between the two notations
+
+mode(my.list[1])
+mode(my.list[[1]])
+
+#Alternate way of extracting values from a list
+my.list$stud.id
+
+names(my.list)
+names(my.list) <- c("id", "name", "marks")
+my.list
+#Adding extra components
+my.list$parents.names <- c("Anna", "Mahesh")
+my.list
+length(my.list)
+#Removing components
+my.list <- my.list[-3]
+my.list
+other <- list(age=19, sex = "male")
+lst <- c(my.list, other) #Combining two lists
+lst
+#Using unlist() function to unflatten all data in a list
+unlist(my.list) #Coerces everything into a character string
+
+#Data Frames
+#In R, Dataframes are a special class of lists
+#Each row of the dataframe can be seen as an observation, described by a set of variables
+
+my.dataset <- data.frame(site=c("A", "B", "A", "A", "B"), 
+                         season=c("Winter", "Summer", "Summer", "Spring", "Fall"),
+                         pH = c(7.4, 6.3, 8.6, 7.2, 8.9))
+my.dataset
+my.dataset[3,2] #Accessing elements of a data frame
+my.dataset$pH
+my.dataset[my.dataset$pH >8.2,] #Querying a specific column of the dataframe
+my.dataset[my.dataset$site =="A", "pH"] #Extracting pH values of sites with value "A"
+
+my.dataset[my.dataset$season == "Summer", c("site", "pH")]
+
+#The attach() function simplifies these queries by allowing to access the columns of a 
+#dataframe directly without having to use the name of the respective data frame
+attach(my.dataset)
+my.dataset[site=="B",]
+season
+#Inverse of attach() is detach()
+detach(my.dataset)
+season #Give the following error: "Error: object 'season' not found"
+
+#attaching again
+attach(my.dataset)
+season
+
+#Use the subset() function when only querying the dataframe
+subset(my.dataset, pH>8)
+subset(my.dataset, season=="Summer", season:pH)
+#Adding 1 to all observations in pH column for the season Summer
+my.dataset[my.dataset$season=="Summer", "pH"] <- my.dataset[my.dataset$season =="Summer",'pH']+1
+my.dataset
+
+#Add a new column to the dataframe, i.e. a new set of observations for each row
+my.dataset$NO3 <- c(234.5, 256.6, 654.1, 356.7, 776.4)
+my.dataset
+nrow(my.dataset)
+ncol(my.dataset)
+my.dataset <- edit(my.dataset)
+names(my.dataset)[4] <- "PO4" #Changing the name of the 4th column to PO4
+my.dataset
+
+#Creating New Functions
+
