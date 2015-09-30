@@ -22,3 +22,72 @@ j #Will now return the error message "object 'j' not found"
  #Data Types####
 class(x)
 x
+is.numeric(x)
+
+#To set an integer, the number has to be appended with the character "L". For example:
+i <- 5L
+i
+class(i)
+is.integer(i)
+#Although 'i' is an integer, it will also pass the numeric check. 
+#However, not all values that pass the numeric check will pass the integer test - QED
+
+is.numeric(i)
+
+#R will promote integers to numeric as and when required. 
+#For example, when multiplying an integer by a numeric
+
+class(4L)
+class(2.8)
+4L*2.8
+class(4L*2.8)
+#Character Data
+#R has two ways to handle character data - 'character' and 'factor'
+x <- "data"
+x
+y <- factor("data")
+y
+
+#To find the length of a character
+nchar(x)
+nchar("hello")
+nchar(1)
+nchar(42)
+nchar(y) #This will give an error since nchar requires 'character', not a 'factor'
+
+#Dates
+#Multiple ways to store dates in R, but most common/useful tend to be 'Date' and 'POSIXct'
+#Both objects represented as number of days or seconds since January 1, 1970
+
+date1 <- as.Date("2012-06-28")
+date1
+class(date1)
+as.numeric(date1)
+date2 <- as.POSIXct("2015-10-30 19:42")
+date2
+class(date2)
+as.numeric(date2)
+
+#Logical
+#Way of representing data that can either be TRUE or FALSE
+#Numerically, TRUE = 1, FALSE = 0
+TRUE*5
+FALSE*5
+
+k <- TRUE
+class(k)
+
+is.logical(k)
+#Logical as a result of comparing two or more values
+2==3
+2!=3
+
+#Vectors####
+#A vector is a collection of elements, all of the same type
+#Vectors are important in R, because R is a vectorised language.
+#Operations are applied through each element of R, without the need for looping
+x <- c(1,2,3,4,5,6,7,8,9,10)
+x
+#Vector Operations
+x*3
+x+2
