@@ -91,3 +91,82 @@ x
 #Vector Operations
 x*3
 x+2
+x/4
+sqrt(x)
+
+#Shortcut to creating a series of vectors, instead of manually typing out c(1,2,3,4,....,n)
+x <- 1:10
+x
+sqrt(x)
+y <- -2:3
+y
+y^2
+x <- 1:10
+y <- 11:20
+x^y
+x*y
+x/y
+x-y
+x+y
+length(x)
+length(x+y)
+
+#Operating on vectors of unequal length
+x + c(1,2)
+x + c(1,2,3) #This will give an error since x has 10 elements, which is not a multple of 3    
+
+#Comparison
+x <= 5
+x<y
+
+#'any' and 'all' functions
+x <- 10:1 
+y <- -4:5
+any(x<y) #Checks to see if any of the values in x is less than those in y
+all(x<y) #Checks if all elements of x are less than the elements in y
+q <- c( "Hockey", "Football", "Baseball", "Curling", "Rugby", 
+        "Lacrosse", "Basketball", "Tennis", "Cricket", "Soccer")
+q
+nchar(q)
+nchar(y)
+x[1]
+x[1:2]
+x[c(1,4)]
+
+#Naming elements of a vector
+c(One="a", Two = "b", Three = "c")
+
+#Create a vector
+w <- 1:3
+#Name the elements
+names(w) <- c("a", "b", "c")
+w
+
+#Factor Vectors
+q
+q2 <- c("Hockey", "Lacrosse", "Hockey", "Water Polo", "Hockey", "Lacrosse")
+q2
+q2Factor <- as.factor(q2)
+q2Factor
+as.numeric(q2Factor)
+#Ordered Factors can be important in some cases, such as education levels, or company heirarachy
+factor(x=c("High School", "College", "Masters", "Doctorate"), 
+       levels=c("High School", "College", "Masters", "Doctorate"),
+       ordered=TRUE)
+#Missing Data####
+#NA
+#NA is just missing data
+z<- c(1,2,NA, 8,3,NA,3)
+z
+is.na(z)
+zChar <- c("Hockey", NA, "Lacrosse")
+zChar
+is.na(zChar)
+#NULL
+#NULL is the absense of anything
+z <- c(1, NULL, 3)
+z #z will show the values 1 and 3, with no indication of 'NULL'
+is.null(z)
+d <- NULL
+is.null(d)
+ 
