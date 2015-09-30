@@ -169,4 +169,48 @@ z #z will show the values 1 and 3, with no indication of 'NULL'
 is.null(z)
 d <- NULL
 is.null(d)
- 
+
+#data.frames####
+x <- 10:1
+y <- -4:5
+q <- c( "Hockey", "Football", "Baseball", "Curling", "Rugby", 
+        "Lacrosse", "Basketball", "Tennis", "Cricket", "Soccer")
+theDF <- data.frame(x,y,q) #Creates a 10X3 Dataframe consisting of 3 vectors
+theDF
+theDF <- data.frame(First=x, Second =y, Sport = q)
+theDF
+
+#Checking attributes of a Dataframe
+nrow(theDF)
+ncol(theDF)
+dim(theDF)
+
+names(theDF)  
+names(theDF)[3]
+rownames(theDF)
+rownames(theDF) <- c("One", "Two", "Three", "Four", "Five", "Six", "Seven", "Eight", "Nine", "Ten")
+theDF
+#Set back the row name to original
+rownames(theDF) <- NULL
+theDF
+head(theDF)
+head(theDF, n=7)
+tail(theDF)
+tail(theDF, n=7)
+class(theDF)
+#Accessing specific columns of a data frame
+theDF[3]
+#Alternate way
+theDF$Sport
+#Accessing specific elements by their position
+theDF[1,3] #1st row, 3rd column
+theDF[2, 2:3] #Row 2, Columns 2 to 3
+theDF[c("First", "Sport")]
+theDF[,"Sport"]
+class(theDF[,"Sport"])
+class(theDF["Sport"])
+#To ensure a single column data.frame, while using single-square brackets, use "drop=FALSE"
+theDF[,"Sport", drop=FALSE]
+newFactor <- factor(c("PA", "NY", "NJ", "NY", "TN", "MA", "PA", "NY"))
+newFactor
+model.matrix(~newFactor -1)
