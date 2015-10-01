@@ -256,3 +256,52 @@ A
 A %*% C
 
 #Arrays####
+#An array is a multi-dimensional vector
+#All elements must be of the same type
+theArray <- array(1:12, dim=c(2,3,2))
+theArray
+theArray[1,,] #The first row of each dimension
+theArray[1,,1] #First row of the first dimension
+theArray[,,1] #The first dimension
+#Difference between an Array and a Matrix:
+#Matrices are restricted to two dimensions, 
+#Arrays can have an arbitray number of dimensions
+
+#Reading Data Into R####
+#Reading from CSV
+theURL <- "http://www.jaredlander.com/data/Tomato%20First.csv"
+tomato <- read.table(file=theURL, header=TRUE, sep = ",")
+head(tomato)
+#Reading from Databases####
+
+#Statistical Graphics####
+
+library(ggplot2)
+library(ggthemes)
+data(diamonds)
+head(diamonds)
+attach(diamonds)
+#Base Histogram
+hist(carat, main = "Carat Histogram", xlab="Carat")
+
+#Base Scatterplot
+plot(price~carat, data=diamonds, xlab = "Carat", ylab="Price")
+#The ~ (tilda) separating price and carat indicates that we are viewing price against carat
+plot(carat,price) #Simpler way to plot
+
+#Boxplots
+boxplot(carat)
+
+#Using ggplot2####
+#Histograms and Densities
+
+ggplot(data=diamonds) + geom_histogram(aes(x=carat)) + theme_wsj()
+#Density Plot
+ggplot(data=diamonds) +geom_density(aes(x=carat), fill="grey50") + theme_wsj()
+
+#ggplot2 Scatterplots
+g <- ggplot(diamonds, aes(x=carat, y=price))+geom_point() + theme_wsj()
+g
+g+geom_point(aes(color=color))
+g+geom_point(aes(color=color))+facet_wrap(~color)
+g+geom_point(aes(color=color))+facet_grid(cut~clarity)
