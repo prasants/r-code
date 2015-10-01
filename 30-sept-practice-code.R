@@ -214,3 +214,45 @@ theDF[,"Sport", drop=FALSE]
 newFactor <- factor(c("PA", "NY", "NJ", "NY", "TN", "MA", "PA", "NY"))
 newFactor
 model.matrix(~newFactor -1)
+
+#Matrices####
+#Create a 5X2 Matrix
+A <- matrix(1:10, nrow=5)
+#Create another 5X2 Matrix
+B <- matrix(21:30, nrow=5)
+#Create another 5X2 Matrix
+C <- matrix(21:40, nrow=2)
+A
+B
+C
+nrow(A)
+nrow(B)
+nrow(C)
+dim(A)
+A+B
+A*B
+A==B
+
+#Matrix Multiplication
+#Before we multiple A and B, we need to transpose B, since no. of columns
+#of A (left-hand matrix) should be equal to no. of rows of B (right-hand matrix)
+A %*% t(B)
+
+colnames(A)
+rownames(A)
+colnames(A) <- c("First", "Second")
+rownames(A) <- c("1st", "2nd", "3rd", "4th", "5th")
+colnames(B) <- c("First", "Second")
+rownames(B) <- c("One", "Two", "Three", "Four", "Five")
+A
+B
+colnames(C) <- LETTERS[1:10] 
+#"LETTERS" and "letters" are special vectors, Upper-case/Lower-case resp 
+rownames(C) <- c("Top", "Bottom")
+C
+
+t(A)
+A
+A %*% C
+
+#Arrays####
