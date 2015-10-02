@@ -334,3 +334,28 @@ economics$month <- month(economics$date, label=TRUE)
 # Subset the data using the 'which' function
 econ2000 <- economics[which(economics$year >= 2000), ]
 str(econ2000)
+library(scales) #For better axis formatting
+
+# The foundation of the plot
+g <- ggplot(econ2000, aes(x=month, y=pop))
+# add lines colour coded and grouped by year
+g <- g + geom_line(aes(color=factor(year), group=year))
+# Name the legend "Year"
+g <- g+ scale_color_discrete(name="Year")
+# Format the y-axis
+g <- g + scale_y_continuous(labels=comma)
+g <- g + labs(title="Population Growth", x="Month", y="Population")
+# Plot the graph
+g
+g + theme_few()
+
+# Themes - Exploring a few theme packs
+
+g2 <- ggplot(diamonds, aes(x=carat, y=price)) + geom_point(aes(color=color))
+g2
+# Applying themes
+g2 + theme_economist() + scale_colour_economist()
+g2 + theme_excel() + scale_colour_excel()
+g2 + theme_tufte()
+g2 + theme_wsj()
+g2 + theme_few()
