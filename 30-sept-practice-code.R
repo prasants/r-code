@@ -305,3 +305,32 @@ g
 g+geom_point(aes(color=color))
 g+geom_point(aes(color=color))+facet_wrap(~color)
 g+geom_point(aes(color=color))+facet_grid(cut~clarity)
+
+#ggplot2 Boxplots and Violin Plots
+ggplot(diamonds, aes(y=carat, x=1)) + geom_boxplot() +theme_few()
+#Since Boxplots are one-dimensional, we can use x=1 for aesthetic reasons
+
+#Multiple Boxplots
+ggplot(diamonds, aes(y = carat, x=cut)) + geom_tufteboxplot() #or use geom_boxplot()
+
+#Violin Plot
+ggplot(diamonds, aes(x=cut, y=carat)) + geom_violin() + theme_linedraw()
+
+#Combining Aesthetics
+ggplot(diamonds, aes(x=cut, y=carat)) +geom_point() + geom_violin() + theme_linedraw()
+
+#Line Graphs
+ggplot(data=economics, aes(x=date, y=pop)) + geom_line() + theme_linedraw()
+
+#Using the lubridate package
+library(lubridate)
+## Create year and month variables
+str(economics)
+economics$year <- year(economics$date)
+#We use label=TRUE to indicate that we want to see the name of the month
+#instead of the number
+economics$month <- month(economics$date, label=TRUE)
+
+# Subset the data using the 'which' function
+econ2000 <- economics[which(economics$year >= 2000), ]
+str(econ2000)
