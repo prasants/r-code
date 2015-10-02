@@ -359,3 +359,97 @@ g2 + theme_excel() + scale_colour_excel()
 g2 + theme_tufte()
 g2 + theme_wsj()
 g2 + theme_few()
+
+# Writing R Functions ####
+## A hello world function
+
+say.hello <- function ()
+{ 
+  print("Hello World!")
+}
+say.hello()
+
+## Function Arguments
+
+# One Substitution
+sprintf("Hello %s", "Prasant")
+
+# Two substitutions
+sprintf("Hello %s! Today is %s.", "Prasant", "Friday")
+
+# Using sprintf to build a string to print based on function's argument
+hello.person <- function(name)
+{
+  print(sprintf("Hello %s!", name))
+}
+hello.person("Prasant")
+hello.person("Chuck")
+hello.person("Bruce")
+
+hello.person <- function(first, last)
+{
+  print(sprintf("Hello %s %s!", first, last))
+}
+hello.person("Prasant", "Sudhakaran")
+hello.person("Prasant", last="Sudhakaran")
+hello.person(last="Sudhakaran", first="Prasant")
+
+## Extra Arguments
+# The (...) dot-dot-dot argument allows functions to take an arbitrary number of arguments
+# that do not need to be specified in the function definition
+
+# Call hello.person with an extra argument
+hello.person("Prasant", extra="Goodbye") #Will give an error
+# Call hello.person with 2 valid arguments and an extra argument
+hello.person("Prasant", "Sudhakaran", extra="Goodbye")
+
+# Build hello.person with the (...) so that it absorbs extra arguments
+hello.person <- function (first, last = "Doe", ...)
+{ 
+  print(sprintf("Hello %s %s", first, last))
+}
+# Call again with two valid arguments and a third
+hello.person("Prasant", "Sudhakaran", "Goodbye")
+hello.person("Prasant")
+hello.person("Prasant",extra="Goodbye")
+
+## Return Values
+# A mechanism to supply a value to the calling function
+
+# first build a function without an explicit return
+double.num <- function(x)
+{
+  x*2
+}
+double.num(5)
+
+# Build with explicity return function
+double.num <- function(x)
+{
+  return(x*2)
+}
+double.num(5)
+
+# Build again, with another argument after explicit return
+double.num <- function(x)
+{
+  return(x*2)
+  # Any code below this will not be executed as the function has already exited
+  print("Hello World!")
+  return(20)
+}
+double.num(5)
+
+## do.call
+# Allowsus to specify the name of a function either as a character
+# or as an object, and provide arguments as a list
+do.call("hello.person", args = list(first="Prasant", last="Sudhakaran"))
+do.call(hello.person, args = list(first = "Prasant", last = "Sudhakaran"))
+run.this <- function(x, func=mean)
+{
+  do.call(func, args=list(x))
+}
+run.this(1:10)
+run.this(1:10, mean)
+run.this(1:10, sum)
+run.this(1:10, sd)
