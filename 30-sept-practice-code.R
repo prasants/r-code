@@ -552,3 +552,61 @@ b <- c(2,1,0,1)
 ifelse(a==1 & b==1, "Yes", "No")
 # Check only the first element of a and the first element of b, return only one result
 ifelse(a == 1 && b ==1, "Yes", "No")
+
+# Loops in R####
+
+## for loops
+# Iterates over an index
+for (i in 1:10)
+{ 
+  print (i)
+}
+# The results are the same as the command below, although cosmetically it looks different
+print (1:10)
+
+# Another example
+fruit <- c("apple", "banana", "mango")
+fruitlen <- rep(NA, length(fruit))
+fruitlen
+names(fruitlen) <- fruit
+fruitlen
+for (a in fruit)
+{
+  fruitlen[a] <- nchar(a)
+}
+fruitlen
+
+# It is less verbose to perform the same operation using R's built in vectorisation
+fruitlength2 <- nchar(fruit)
+names(fruitlength2) <- fruit
+fruitlenght2
+
+## while loops
+
+x <- 1
+while (x <=5)
+{
+  print(x)
+  x <- x+1 #Without this statement, an infinite loop will be created
+}
+
+## Control within loops
+## Using "next" and "break"
+
+for (i in 1:10)
+{
+  if (i==3)
+  {
+    next #The loop skips over 3
+  }
+  print(i)
+}
+
+for (i in 1:10)
+{
+  if(i==4)
+  {
+    break # breaks the loop at 4
+  }
+  print (i)
+}
