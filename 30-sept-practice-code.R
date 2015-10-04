@@ -1,5 +1,5 @@
 #More R Practice Code####
-
+setwd("~/Documents/r-code")
 #Variables####
 x <- 2
 x
