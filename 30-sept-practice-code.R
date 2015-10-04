@@ -453,3 +453,102 @@ run.this(1:10)
 run.this(1:10, mean)
 run.this(1:10, sum)
 run.this(1:10, sd)
+
+# Control Statements####
+## if and else
+
+# if and else statements are essentially used as a test of conditions. 
+# The set of tests below do not need an if/else though
+as.numeric(TRUE)
+as.numeric(FALSE)
+1==1
+1<1
+
+#We can use the tests above to initiate an action inside an if/else statement though
+toCheck <- 1
+if (toCheck == 1)
+{ 
+  print ("Hello")
+}
+
+if (toCheck ==0)
+{
+  print ("Hello")
+} #Nothing will be printed, since toCheck is not 0
+
+#Initiate an action if something is FALSE
+check.bool <- function(x)
+{
+  if (x==1)
+  {
+    print ("Hello")
+  } else
+  {
+    print ("Goodbye")
+  }
+}
+check.bool(1)
+check.bool(0) #Any value that is not 1 will give the output "Goodbye"
+
+#Testing more than 2 cases
+check.bool <- function(x)
+{
+  if (x==1)
+  { 
+    print ("Hello")
+    } else if (x==0)
+    {
+      print ("Goodbye")
+    } else
+    { print ("Confused")
+      }
+}
+check.bool(1)
+check.bool(0)
+check.bool(10)
+
+## switch 
+use.switch <- function(x)
+{
+  switch(x,
+         "a" = "first",
+         "b" = "second",
+         "z" = "last",
+         "c" = "third",
+         "other")
+}
+use.switch("a")
+use.switch("x")
+use.switch("b")
+use.switch(1)
+use.switch(6)
+is.null(use.switch(6))
+
+## ifelse
+# ifelse is used very similar to the "if" statement in excel
+# First argument is the condition to be tested, second argument is the return value 
+# if test is and third argument is return value if test is false
+
+ifelse(1==1, "Yes", "No")
+ifelse(1==0, "Yes", "No")
+# If testing just a single element, it is more efficient to use the if statement
+# This is a good method to use when dealing with vectors
+
+toTest <- c(1,0,1,0,1)
+ifelse(toTest ==1, "Yes", "No")
+# Referencing the testing element itself
+ifelse(toTest==1, toTest*3, toTest)
+ifelse(toTest==1, toTest*3, "Zero")
+toTest[2] <- NA
+ifelse(toTest==1, "Yes", "No")
+
+## Compound Tests
+# Checking more than relationship at a time
+# || and && are used with if -> compares only one element from each side
+# | and & are used with ifelse -> compares each element of each side
+a <- c(1,1,0,1)
+b <- c(2,1,0,1)
+# Check each element of a and each element of b
+ifelse(a==1 & b==1, "Yes", "No")
+# Check only the first element of a and the first element of b, return only one result
+ifelse(a == 1 && b ==1, "Yes", "No")
