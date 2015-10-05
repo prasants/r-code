@@ -610,3 +610,30 @@ for (i in 1:10)
   }
   print (i)
 }
+
+# Group Manipulation ####
+## The Apply Family - apply, tapply, lapply, mapply etc
+
+## apply
+# apply must be used on a matrix
+# Therefore, all elements must be of the same type
+
+theMatrix <- matrix(1:9, nrow=3)
+theMatrix
+apply(theMatrix, 1, sum) 
+# apply(a,b,c) -> 1st argument = The object, 2nd argument = row/column, where 1 = row, 2 = col
+# 3rd arg = function to be applied
+apply(theMatrix, 2, sum)
+
+# The same result can be acheived by using rowSums or colSums
+rowSums(theMatrix)
+colSums(theMatrix)
+
+# Set an element of theMatrix to NA and see how missing data is handled
+theMatrix[2,1] <- NA # 2nd row, first column
+theMatrix
+
+apply(theMatrix, 1, sum)
+rowSums(theMatrix)
+# Using na.rm = TRUE
+rowSums(theMatrix, na.rm=TRUE)
