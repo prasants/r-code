@@ -637,3 +637,62 @@ apply(theMatrix, 1, sum)
 rowSums(theMatrix)
 # Using na.rm = TRUE
 rowSums(theMatrix, na.rm=TRUE)
+
+## lapply and sapply
+# lapply applies a function to each element of a list, and returns the results as a list
+theList <- list(A=matrix(1:9, 3), B=1:5, C=matrix(1:4, 2), D=2)
+theList
+lapply(theList,sum)
+
+# Since dealing with lists can be awkward at times, sapply can be used
+# to deliver the results as a vector instead
+sapply(theList,sum)
+a1 <- sapply(theList,sum)
+a1
+a1[1]
+
+## mapply: Applies a function to each element of multiple lists
+
+# Build two lists
+firstList <- list(A=matrix(1:16, 4), B=matrix(1:16, 2), C=1:5)
+firstList
+
+secondList <- list(A=matrix(1:16, 4), B=matrix(1:16, 8), C=15:1)
+secondList
+
+# Test element by element if they are identical
+mapply(identical, firstList, secondList)
+
+#Build a function that adds the number of rows (or length) of 
+# each corresponding element
+simpleFunc <- function(x,y)
+{
+  NROW(x) + NROW(y) #nrow will work on objects that have dimesnions (eg. arrays, matrices)
+  #NROW works with vectors
+}
+mapply(simpleFunc, firstList, secondList)
+
+# Aggregate####
+library(ggplot2)
+data(diamonds)
+str(diamonds)
+attach(diamonds)
+head(diamonds)
+# Calculate average price of each type of cut
+# Aggregate price, by cut (2nd arg), with 'diamonds' as the dataset, and mean is function
+# to be applied
+aggregate(price ~cut, diamonds, mean)
+
+#Similar as above, with an additonal layer of grouping
+aggregate(price~ cut+color, diamonds, mean) 
+
+# To aggregate two variables, use cbind
+aggregate(cbind(price, carat) ~ cut, diamonds, mean) 
+# Find the mean of both price and cut for each value of cut
+
+# Only one function can be applied in the statement above - in this case it is the mean. 
+# To use multiple arguments, we can use a package like plyr
+
+aggregate(cbind(price, carat) ~ cut+color, diamonds, mean)
+
+# plyr package####
