@@ -696,3 +696,24 @@ aggregate(cbind(price, carat) ~ cut, diamonds, mean)
 aggregate(cbind(price, carat) ~ cut+color, diamonds, mean)
 
 # plyr package####
+## The plyr package has many functions such as ddply, llply, ldply etc
+
+library(plyr)
+data()
+head(baseball)
+str(baseball)
+# subsetting the data
+baseball$sf[baseball$year <1954] <- 0
+any(is.na(baseball$sf))
+str(baseball$hbp)
+baseball$hbp[is.na(baseball$hbp)] <- 0
+any(is.na(baseball$hbp))
+
+# Only keep players with atleast 50 at bats in a season
+baseball <- baseball[baseball$ab >= 50,]
+# calculate on base percentage
+
+## with function - allows us to specify the columns of a data.frame without having to specify
+## the data.frame name each time
+baseball$OBP <- with(baseball, (h+bb+hbp)/(ab+bb+hbp+sf))
+tail(baseball)
