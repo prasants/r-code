@@ -16,7 +16,6 @@ forecast_STS <- function(series){
 forecast_Arima <- function(series){
   price <- series[,6]
   arima.fit <- auto.arima(price)
-  plot(forecast(fit,h=5))
   series.arima.forecast <- forecast(arima.fit,h=5)
   return(series.arima.forecast)
 }
@@ -26,8 +25,6 @@ forecast_Arima <- function(series){
 forecast_spl <- function(series){
   price <- series[,6]
   series.spline.forecast <- splinef(price, h = 5)
-  plot(series.spline.forecast)
-  #rm(series.spline.forecast) # cleanup cubic spline
   return (series.spline.forecast)
 }
 
